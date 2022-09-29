@@ -1,5 +1,7 @@
 <h1>Star Blast</h1>
 
+Casual color match game.
+
 Demo - https://mental.gatsbyjs.io/star-blast.html
 
 ## Quick start
