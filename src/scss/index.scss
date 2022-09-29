@@ -1,0 +1,26 @@
+@import "fonts";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#app {
+  background: #302E38;
+  width: 100%;
+  height: 100%;
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#useFont {
+  font-family: "Marvin", sans-serif;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

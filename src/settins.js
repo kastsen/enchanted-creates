@@ -1,0 +1,5 @@
+const SETTING = {
+
+}
+
+export { SETTING }
