@@ -1,5 +1,0 @@
-const SETTING = {
-
-}
-
-export { SETTING }
