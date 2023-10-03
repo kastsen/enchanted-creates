@@ -2,7 +2,7 @@
 
 Casual color match game.
 
-Demo - https://mental.gatsbyjs.io/star-blast.html
+Demo - [https://mental.gatsbyjs.io/star-blast.html](https://mentalmerging.netlify.app/star-blast.html)
 
 ## Quick start
 
