@@ -8,7 +8,7 @@ export default class Tile extends PIXI.Container {
 		this.position.set(options.col * options.w, options.row * options.h)
 		this.timeLine = new Timeline()
 		this.speed = 0.0015
-		this.interactive = true
+		this.eventMode = 'static'
 		this.buttonMode = true
 
 		this.create()
@@ -18,8 +18,8 @@ export default class Tile extends PIXI.Container {
 	create() {
 		this.sp = new PIXI.Sprite(app.visual[this.info.skin])
 		this.sp.anchor.set(0.5)
-		this.sp.width = this.options.w;
-		this.sp.height = this.options.h;
+		this.sp.width = this.options.w - 6;
+		this.sp.height = this.options.h - 4;
 		this.sp.x = this.sp.width / 2
 		this.sp.y = this.sp.height / 2
 		this.addChild(this.sp)

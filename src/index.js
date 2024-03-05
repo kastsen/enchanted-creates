@@ -1,19 +1,19 @@
 import './scss/index.scss'
-import './js/loader'
-import Main from "./js/scene/Main";
-import App from "./js/app";
-import Pass from "./js/scene/Pass";
-import Level from "./js/scene/Level";
-import {Loader} from "./js/loader";
+import './js/Loader'
+import Main from "./js/scenes/Main";
+import App from "./js/App";
+import Pass from "./js/scenes/Pass";
+import Level from "./js/scenes/Level";
+import {Loader} from "./js/Loader";
 
-window.onload = () => {
-    global.app = new App({
-        elem : document.getElementById('app')
-    })
+global.app = new App({
+    elem : document.getElementById('app')
+})
 
-    Loader()
+await Loader()
 
-    app.scene.add('Main', Main)
-    app.scene.add('Pass', Pass)
-    app.scene.add('Level', Level)
-}
+app.scene.add('Main', Main)
+app.scene.add('Pass', Pass)
+app.scene.add('Level', Level)
+
+app.scene.start('Main')

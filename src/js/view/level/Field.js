@@ -1,8 +1,8 @@
-import TILES from "../../lib/tiles";
 import TileSimple from "../entities/TileSimple";
 import Tile from "../entities/Tile";
-import {Sprite} from "pixi.js";
-import Tools from "../../lib/Tools";
+import { Sprite } from "pixi.js";
+import Tools from "../../core/Tools";
+import {TILES} from "../../model/LevelModel";
 
 export default class Field extends PIXI.Container {
 	constructor(view, options) {
@@ -14,7 +14,7 @@ export default class Field extends PIXI.Container {
 		this.cols = options.template[0].length
 		this.cell = options.cell
 		this.task = this.model.setting.task
-		this.interactive = true
+		this.eventMode = 'static'
 		this.on('click', (e) => this.fieldHandler(e))
 		this.on('tap', (e) => this.fieldHandler(e))
 		this.tiles = []
@@ -22,10 +22,11 @@ export default class Field extends PIXI.Container {
 	}
 
 	create() {
-		const back = Sprite.from(app.visual.field);
-		back.width = this.cols*this.cell.w + 24;
-		back.height = this.rows*this.cell.h + 25;
-		back.position.set(-12, -12)
+		const back = new Sprite(app.visual.field);
+		back.alpha = 0;
+		back.width = app.size.width;
+		back.height = this.rows*this.cell.h + 118;
+		back.position.set(-42, -42)
 		this.addChild(back)
 	}
 

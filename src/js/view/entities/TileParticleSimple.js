@@ -1,4 +1,4 @@
-import Tools from "../../lib/Tools";
+import Tools from "../../core/Tools";
 import TileParticle from "./TileParticle";
 
 export default class TileParticleSimple extends TileParticle {

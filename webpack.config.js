@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
-const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const env = process.env.NODE_ENV;
 
 module.exports = {
@@ -29,13 +27,10 @@ module.exports = {
     }, module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|otf)$/i,
+        test: /\.(png|jpg|jpeg)$/i,
         use: [
           {
             loader: 'url-loader',
-            options: {
-              limit: 10000000,
-            },
           },
         ],
       },
@@ -52,7 +47,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          env === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
@@ -78,10 +73,9 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
-    env === 'development' ?
-        new webpack.HotModuleReplacementPlugin() :
-        new HtmlInlineScriptPlugin(),
-        new HTMLInlineCSSWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: 'body',
+    }),
   ],
 };

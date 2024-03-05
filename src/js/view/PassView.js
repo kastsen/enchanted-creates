@@ -1,5 +1,5 @@
 import View from "./View";
-import Button from "./entities/Button";
+import Button from "./ui/Button";
 
 export default class PassView extends View {
 	constructor(scene, options) {
@@ -11,6 +11,7 @@ export default class PassView extends View {
 	}
 
 	create() {
+		console.log('QQQQ')
 		this.overlay = this.createOverlay()
 		this.btnPanel = new PIXI.Container()
 		this.button = this.createButton(this.options.action)

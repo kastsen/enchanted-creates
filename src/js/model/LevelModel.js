@@ -1,11 +1,25 @@
-import Task from "../../js/lib/Task";
-import Tools from "../lib/Tools";
-import TILES from "../lib/tiles";
+import Task from "../core/Task";
+import Tools from "../core/Tools";
+
+export const TILES = {
+	simple: {
+		// red:    { id: '1', type: 'simple', name: 'red',    skin: 'tile_red'    },
+		green:  { id: '2', type: 'simple', name: 'green',  skin: 'tile_green'  },
+		blue:   { id: '3', type: 'simple', name: 'blue',   skin: 'tile_blue'   },
+		yellow: { id: '4', type: 'simple', name: 'yellow', skin: 'tile_yellow' },
+		purple: { id: '5', type: 'simple', name: 'purple', skin: 'tile_purple' },
+		purple2: { id: '6', type: 'simple', name: 'purple2', skin: 'tile_purple_2' },
+		// yellow2: { id: '7', type: 'simple', name: 'yellow2', skin: 'tile_yellow2' },
+	}
+}
 
 export default class LevelModel {
 	constructor(level) {
 		this.level = level
-		this.setting = JSON.parse(JSON.stringify(require(`../levels/${this.level}.json`)))
+		this.setting = JSON.parse(
+			JSON.stringify(
+				require(`./levels/${this.level}.json`)
+			))
 		this.field = this.setting.field.template
 		this.rows = this.field.length
 		this.cols = this.field[0].length

@@ -1,18 +1,26 @@
-import Scaling from "./lib/Scaling";
-import SceneManager from "./lib/SceneManager";
+import Scaling from "./core/Scaling";
+import SceneManager from "./core/SceneManager";
+import {EventSystem} from "pixi.js";
 
 class App {
 	constructor(param) {
 		this.elem     = param.elem || document.body
+
 		this.renderer = new PIXI.Renderer({
-			backgroundColor: 0x000000,
-			backgroundAlpha: 0.5,
-			resolution: window.devicePixelRatio || 1,
+			backgroundColor: 0xF2C78F,
+			backgroundAlpha: 1,
+			resolution: 2 || 2,
 			powerPreference: 'high-performance',
 		})
+
+		const events = new EventSystem(this.renderer);
+		events.domElement = this.renderer.view;
+
+
+
 		this.stage    = new PIXI.Container()
 		this.ticker   = new PIXI.Ticker()
-		this.loader   = new PIXI.Loader()
+
 		this.scene    = new SceneManager(this.stage)
 		this.scaling  = new Scaling()
 
@@ -43,7 +51,7 @@ class App {
 	}
 
 	start() {
-		this.ticker.add(this.render.bind(this), PIXI.UPDATE_PRIORITY.LOW)
+		this.ticker.add(this.render.bind(this), PIXI.UPDATE_PRIORITY.HIGH)
 		this.ticker.add(this.update.bind(this))
 		this.ticker.start()
 	}

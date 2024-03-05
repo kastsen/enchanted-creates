@@ -1,18 +1,41 @@
 import View from "./View";
 import Field from "./level/Field";
-import TaskBar from "./level/TaskBar";
-import Bonuses from "./entities/Bonuses";
+import TaskBar from "./ui/TaskBar";
+import Bonuses from "./ui/Bonuses";
+import LevelPanel from "./ui/LevelPanel";
+import Avatar from "./ui/Avatar";
 
 export default class LevelView extends View {
 	constructor(scene) {
 		super(scene)
 		this.settings = scene.settings
 		this.particles = []
-		this.field = new Field(this, scene.settings.field)
 
+		this.bg = new PIXI.Sprite(app.visual.bgImg);
+		this.bg.anchor.set(0.5)
+
+		this.topBarBg = new PIXI.Sprite(app.visual.topBarBg);
+		this.topBarBg.height = 200
+
+		this.field = new Field(this, scene.settings.field)
 		this.taskBar = new TaskBar(this.scene.level, scene.settings.task)
 		this.bonuses = new Bonuses({view: this, settings: this.settings})
-		this.addChild(this.field, this.taskBar, this.taskBar.scorePanel, this.bonuses)
+		this.levelPanel = new LevelPanel();
+
+		this.avatar = new Avatar()
+
+		this.addChild(
+			this.bg,
+			this.field,
+			this.topBarBg,
+			this.taskBar,
+			this.taskBar.scorePanel,
+			this.bonuses,
+			this.levelPanel,
+			this.taskBar.pointsPanel,
+			this.taskBar.progressPanel,
+			this.avatar
+		)
 		this.updatePosition()
 
 		window.addEventListener('resize', this.updatePosition.bind(this))
@@ -43,14 +66,30 @@ export default class LevelView extends View {
 		this.addChild(...particles)
 	}
 
-	end() {
-		this.interactiveChildren = false
-	}
+	end() {}
 
 	updatePosition() {
-		// @todo full responsive
-		this.taskBar.position.set(-this.taskBar.width/2, -app.size.height/2+10)
-		this.field.position.set(-this.field.width/2-110, -this.field.height/2)
+		this.taskBar.position.set(-this.taskBar.width/2 - 10, -app.size.height/2+10)
+		this.field.position.set(-249, -this.field.height/2 + 144)
+		this.bonuses.position.set(-app.size.width/2 + 30, -app.size.height/2 + 30)
+		this.topBarBg.width = app.size.width
+		this.topBarBg.position.set(-app.size.width/2, -app.size.height/2)
+		this.levelPanel.position.set(-app.size.width/2 + 30, -app.size.height/2 + 30)
+
+		this.taskBar.pointsPanel.position.set(
+			app.size.width/5,
+			-app.size.height/2 + 25
+		)
+
+		this.taskBar.progressPanel.position.set(
+			-app.size.width/2.5,
+			-app.size.height/2 + 168
+		)
+
+		this.avatar.position.set(-this.avatar.img.width/2, -app.size.height/2 + 20)
+
+		this.bg.width = app.size.height
+		this.bg.height = app.size.height
 	}
 
 	cleanParticles() {
