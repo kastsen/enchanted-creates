@@ -2,7 +2,7 @@
 
 Casual color match game.
 
-[Demo](https://mentalmerging.netlify.app/star-blast.html)
+[Demo]([https://mentalmerging.netlify.app/star-blast.html](https://playablemajor.netlify.app/star-blast.html))
 
 ## Quick start
 
